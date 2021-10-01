@@ -10,8 +10,6 @@ os:
   - osx
 compiler:
   - clang
-script:
-  - make
 addons:
   apt:
     sources:
@@ -19,3 +17,17 @@ addons:
     packages:
       - cmake-data
       - cmake
+before_script:
+  # create a build folder for the out-of-source build
+  - mkdir build
+  # switch to build directory
+  - cd build
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake ..
+
+script:
+  # once CMake has done its job we just build using make as usual
+  - make
+  # if the project uses ctest we can run the tests like this
+  # - make test
