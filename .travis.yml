@@ -2,12 +2,20 @@
 # For more languages and info see:
 # https://github.com/rsp/travis-hello#readme
 
-sudo: false
+#sudo: false
 language: cpp
 os:
   - windows
   - linux
+  - osx
 compiler:
   - clang
 script:
   - make
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
