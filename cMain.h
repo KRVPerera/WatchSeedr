@@ -18,6 +18,16 @@ public:
     cMain();
     ~cMain();
 
+public:
+    int nFieldWidth = 10;
+    int nFieldHeight = 10;
+    wxButton **m_pButtons;
+    int *nFields = nullptr;
+    bool bFirstClick = true;
+
+    void OnButtonClicked(wxCommandEvent& event);
+
+    wxDECLARE_EVENT_TABLE();
 };
 
 
