@@ -2,11 +2,10 @@
 ## For more languages and info see:
 ## https://github.com/rsp/travis-hello#readme
 #
-sudo: false
 language: cpp
 os:
   - linux
-dist: trusty
+dist: focal
 compiler:
   - g++
 addons:
