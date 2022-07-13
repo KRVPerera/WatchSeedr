@@ -1,11 +1,9 @@
-project(WatchSeedr)
+project(SeedrDownloadManager)
 cmake_minimum_required(VERSION 3.12)
 
 set(CMAKE_CXX_STANDARD 20)
 
-find_package(wxWidgets REQUIRED COMPONENTS net core base)
-include(${wxWidgets_USE_FILE})
 
-add_executable(WatchSeedr cMain.cpp cMain.h cApp.cpp cApp.h)
+add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(WatchSeedr ${wxWidgets_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
