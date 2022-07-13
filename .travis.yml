@@ -1,0 +1,31 @@
+## Travis example for Modern C++ by Rafał Pocztarski
+## For more languages and info see:
+## https://github.com/rsp/travis-hello#readme
+#
+language: cpp
+os:
+  - linux
+dist: focal
+compiler:
+  - g++
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
+before_script:
+  # create a build folder for the out-of-source build
+  - mkdir build
+  # switch to build directory
+  - cd build
+  # run cmake; here we assume that the project's
+  # top-level CMakeLists.txt is located at '..'
+  - cmake ..
+#
+script:
+  # once CMake has done its job we just build using make as usual
+  - make
+  # if the project uses ctest we can run the tests like this
+  # - make test
