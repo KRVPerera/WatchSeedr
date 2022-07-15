@@ -17,14 +17,31 @@ if(NOT ftxui_POPULATED)
     add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
+add_subdirectory(SeedrClient)
+
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/SeedrClient)
+
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_include_directories(${PROJECT_NAME} PRIVATE src)
+target_include_directories(${PROJECT_NAME} PRIVATE src
+                            ${PROJECT_SOURCE_DIR}/SeedrClient)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE ftxui::screen
         PRIVATE ftxui::dom
         PRIVATE ftxui::component # Not needed for this example.
+        ${CURL_LIBRARIES}
+        SeedrClient
         )
+
+
+set(CMAKE_CXX_FLAGS_INIT "-Werror -Wall -Wextra -Wpedantic")
+#set(CMAKE_CXX_FLAGS_INIT "--coverage -fno-exceptions -g")
+
+# toolchain file for use with gdb
+#set(CMAKE_CXX_FLAGS_DEBUG_INIT "-fsanitize=address,undefined -fsanitize-undefined-trap-on-error")
+#set(CMAKE_EXE_LINKER_FLAGS_INIT "-fsanitize=address,undefined -static-libasan")
 
 if (EMSCRIPTEN)
     string(APPEND CMAKE_CXX_FLAGS " -s USE_PTHREADS")
