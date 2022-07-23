@@ -1,5 +1,5 @@
-project(SeedrDownloadManager)
 cmake_minimum_required(VERSION 3.9.2)
+project(SeedrDownloadManager VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -16,6 +16,14 @@ if(NOT ftxui_POPULATED)
     FetchContent_Populate(ftxui)
     add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
+
+FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG        v3.0.0-preview5
+)
+
+FetchContent_MakeAvailable(Catch2)
 
 add_subdirectory(SeedrClient)
 

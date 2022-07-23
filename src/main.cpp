@@ -57,7 +57,9 @@ int main(int argc, const char *argv[]) {
     screen.Print();
     std::cout << std::endl;
 
-    SeedrClient sc;
+    std::string userName = "rukshan.viduranga@gmail.com";
+    std::string passWord = "0432-3527";
+    SeedrClient sc(userName, passWord);
     sc.test();
 
     return 0;
